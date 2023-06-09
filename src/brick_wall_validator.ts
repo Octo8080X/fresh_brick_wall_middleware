@@ -46,10 +46,10 @@ export class BrickWallValidator {
     console.log([payload.brickWallToken, this.#BRICK_WALL_HASHED_PASSWORD!, bcrypt.hashSync("test")])
 
     if (
-      !(await bcrypt.compare(
+      !bcrypt.compareSync(
         payload.brickWallToken,
         this.#BRICK_WALL_HASHED_PASSWORD!,
-      ))
+      )
     ) {
       throw new Error("Invalid `brick-wall-token 2`.");
     }
