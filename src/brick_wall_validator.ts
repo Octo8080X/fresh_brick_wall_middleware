@@ -43,7 +43,7 @@ export class BrickWallValidator {
       throw new Error("No set parameter `brickWallToken`.");
     }
 
-    console.log([payload.brickWallToken, this.#BRICK_WALL_HASHED_PASSWORD!])
+    console.log([payload.brickWallToken, this.#BRICK_WALL_HASHED_PASSWORD!, bcrypt.hashSync("test")])
 
     if (
       bcrypt.compareSync(
