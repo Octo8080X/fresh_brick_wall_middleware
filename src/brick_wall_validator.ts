@@ -33,17 +33,13 @@ export class BrickWallValidator {
     if (!brickWallToken) {
       throw new Error("No set header `brick-wall-token`.");
     }
-    console.log([brickWallToken, this.#BRICK_WALL_JWT_KEY]);
     const payload = await verify(brickWallToken, this.#BRICK_WALL_JWT_KEY);
-    console.log(payload);
     if (!payload) {
       throw new Error("Invalid `brick-wall-token 1`.");
     }
     if (!payload.brickWallToken || typeof payload.brickWallToken !== "string") {
       throw new Error("No set parameter `brickWallToken`.");
     }
-
-    console.log([payload.brickWallToken, this.#BRICK_WALL_HASHED_PASSWORD!, bcrypt.hashSync("test")])
 
     if (
       !bcrypt.compareSync(
